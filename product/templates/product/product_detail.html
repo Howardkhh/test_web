@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1> {{ object.name }} </h1>
+    <p> {{ object.detail }} </p>
+    {% for image in images %}
+        <img src="{{image.image.url}}" alt="test img" height="100em">
+    {% endfor %}
+    <div>{{object.video|safe}}</div>
+
+{% endblock %}
