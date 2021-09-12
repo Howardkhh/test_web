@@ -34,7 +34,7 @@ class Product(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length=100)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_image")
-    image = models.ImageField(upload_to='product/'+product.name)
+    image = models.ImageField(upload_to='product/'+str(product.name))
     default = models.BooleanField(default=False)
 
 @receiver(pre_save, sender=Image)
