@@ -2,9 +2,11 @@ from mysite.settings import MEDIA_ROOT
 from django.db import models
 from django.urls import reverse
 from django.db.models.signals import pre_save
+from django.core.files import File
 from django.dispatch import receiver
 from PIL import Image as PIL_Image
 import os
+from io import BytesIO
 
 # Create your models here.
 class Product(models.Model):
@@ -35,5 +37,6 @@ def crop_img(sender, instance, *args, **kwargs):
             img = img.crop((int((w-h*ratio)/2), 0, int(h*ratio), h))
         elif w/h < ratio:
             img = img.crop((0, int((h-w/ratio)/2), w, int(w/ratio)))
-        img.save(os.path.join(MEDIA_ROOT, 'product/' + instance.name + '.jpg'))
-        instance.image = 'product/' + instance.name + '.jpg'
+        img_io = BytesIO()
+        img.save(img_io, "JPEG", quality=60)
+        instance.image = File(img_io, name=instance.name+'.jpg')
