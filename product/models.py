@@ -36,4 +36,4 @@ def crop_img(sender, instance, *args, **kwargs):
         elif w/h < ratio:
             img = img.crop((0, int((h-w/ratio)/2), w, int(w/ratio)))
         img.save(os.path.join(MEDIA_ROOT, 'product/' + instance.name + '.jpg'))
-        instance.image = os.path.join(MEDIA_ROOT, 'product/' + instance.name + '.jpg')
+        instance.image = 'product/' + instance.name + '.jpg'
