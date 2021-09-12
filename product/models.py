@@ -34,7 +34,7 @@ class Product(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length=100)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_image")
-    image = models.ImageField(upload_to='product/'+str(product))
+    image = models.ImageField(upload_to='product/')
     default = models.BooleanField(default=False)
 
 @receiver(pre_save, sender=Image)
@@ -51,5 +51,5 @@ def crop_img(sender, instance, *args, **kwargs):
             img = img.resize((1920, 1440))
         img_io = BytesIO()
         img.save(img_io, "JPEG", quality=60)
-        instance.image = File(img_io, name=instance.name+'.jpg')
+        instance.image = File(img_io, name=instance.product.name+'/'+instance.name+'.jpg')
 
