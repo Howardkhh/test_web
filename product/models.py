@@ -22,6 +22,9 @@ class Product(models.Model):
     price = models.IntegerField()
     video = models.TextField(blank=True)
 
+    def __str__(self):
+        return "product " + self.name
+
     def get_default_img(self):
         return Product.objects.get(id=self.id).product_image.filter(default=True).first()
 
@@ -31,7 +34,7 @@ class Product(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length=100)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_image")
-    image = models.ImageField(upload_to='product/')
+    image = models.ImageField(upload_to='product/'+product.name)
     default = models.BooleanField(default=False)
 
 @receiver(pre_save, sender=Image)
