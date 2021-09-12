@@ -1,7 +1,26 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+<style>
+    .big-font-no-margin {
+        font-size: 5rem;
+        margin-bottom: 0;
+    }
+    .middle-font {
+        font-size: 1.75rem;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
-    <h1> This is the about </h1>
+<section class="py-5 text-center container">
+    <div class="row py-lg-3">
+      <div class="col-lg-10 col-md-8 mx-auto px-4">
+        <h1 class="big-font-no-margin fw-light">關於</h1>
+        <p class="middle-font lead text-muted">問題的關鍵究竟為何？關於文字，到底應該如何實現。毛澤東說過一句很有意思的話，科學技術這一仗，一定要打，而且必須打好。這啟發了我。西賽羅說過一句著名的話，如果靈魂仍能研究和學習，那麼沒有什麼比老年的空閒更快樂了。空閒存於善良的行動，人類藉著它才能在道德上、智能上與精神上獲得成長。這段話看似複雜，其中的邏輯思路卻清晰可見。</p>
+      </div>
+    </div>
+  </section>
 
 {% endblock %}
