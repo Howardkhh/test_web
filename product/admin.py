@@ -6,6 +6,9 @@ from .models import Product, Image
 
 class ImageAdmin(admin.StackedInline):
     model = Image
+    verbose_name = "照片"
+    verbose_name_plural = "商品照片"
+    extra = 0
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -13,7 +16,3 @@ class ProductAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Product
-
-# @admin.register(Image)
-# class ImageAdmin(admin.ModelAdmin):
-#     pass
